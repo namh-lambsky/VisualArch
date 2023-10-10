@@ -1,6 +1,11 @@
-# visualarch_v1
+# VisualArch
 
-A new Flutter project.
+Proyecto de Practica de Ingeniería de la Universidad Central
+
+Hecho por: 
+-Joan Sebastian Dimey Fonseca
+-Nicolas Alejandro Monroy Hernandez
+-Raúl Eduardo Riaño Moreno
 
 ## Getting Started
 
