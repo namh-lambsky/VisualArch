@@ -1,0 +1,68 @@
+name: visualarch_v1
+description: A new Flutter project.
+# The following line prevents the package from being accidentally published to
+# pub.dev using `flutter pub publish`. This is preferred for private packages.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.1.0 <4.0.0'
+dependencies:
+  flutter:
+    sdk: flutter
+  google_fonts: ^6.1.0
+  cupertino_icons: ^1.0.6
+  flutter_svg: ^2.0.7
+  firebase_core: ^2.17.0
+  firebase_auth: ^4.10.1
+  get: ^4.6.6
+  layout: ^1.0.5
+  flutter_otp_text_field: ^1.1.1
+  cloud_firestore: ^4.9.3
+
+
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^2.0.3
+  flutter_launcher_icons: "^0.13.1"
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/images/icon.png"
+  min_sdk_android: 21 # android min sdk min:16, default 21
+  web:
+    generate: true
+    image_path: "assets/images/icon.png"
+    background_color: "#hexcode"
+    theme_color: "#hexcode"
+
+flutter:
+
+  uses-material-design: true
+
+  assets:
+    - assets/images/
+
+
+  fonts:
+    - family: Thin
+      fonts:
+        - asset: assets/fonts/Montserrat/Montserrat-Thin.ttf
+
+    - family: ExtraLight
+      fonts:
+        - asset: assets/fonts/Montserrat/Montserrat-ExtraLight.ttf
+
+    - family: Regular
+      fonts:
+        - asset: assets/fonts/Montserrat/Montserrat-Regular.ttf
+
+    - family: SemiBold
+      fonts:
+        - asset: assets/fonts/Montserrat/Montserrat-SemiBold.ttf
