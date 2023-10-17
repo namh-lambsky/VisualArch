@@ -8,11 +8,6 @@ class UserRepository extends GetxController {
 
   final _db = FirebaseFirestore.instance;
 
-  late final Map<String, dynamic> returnMessage = {
-    "bool": false,
-    "message": ""
-  };
-
   Future<Map<String, dynamic>> createUserDB(
       UserModel user) async {
     try {
@@ -35,6 +30,10 @@ class UserRepository extends GetxController {
     final snapshot=await _db.collection('users').get();
     final userData=snapshot.docs.map((e) => UserModel.fromSnapshot(e)).toList();
     return userData;
+  }
+
+  Future<void>updateUser(UserModel user)async{
+    await _db.collection("users").doc(user.id).update(user.toJson());
   }
 
 }

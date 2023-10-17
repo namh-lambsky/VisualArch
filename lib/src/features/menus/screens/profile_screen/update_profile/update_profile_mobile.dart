@@ -19,7 +19,6 @@ class UpdateProfileMobile extends StatelessWidget {
     final formKey = GlobalKey<FormState>();
     double padding = context.layout.value(xs: 8);
 
-
     return Scaffold(
       backgroundColor: backgroundColor,
       appBar: AppBar(
@@ -49,7 +48,12 @@ class UpdateProfileMobile extends StatelessWidget {
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.done) {
               if (snapshot.hasData) {
-                UserModel userData=snapshot.data as UserModel;
+                UserModel user = snapshot.data as UserModel;
+
+                final email = TextEditingController(text: user.email);
+                final fullname = TextEditingController(text: user.name);
+                final phone = TextEditingController(text: user.phone);
+
                 return Column(
                   children: [
                     Stack(
@@ -91,7 +95,7 @@ class UpdateProfileMobile extends StatelessWidget {
                         key: formKey,
                         child: Column(children: [
                           TextFormField(
-                            initialValue: userData.name,
+                            controller: fullname,
                             decoration: textFieldNameDecoration,
                             keyboardType: TextInputType.name,
                           ),
@@ -99,7 +103,7 @@ class UpdateProfileMobile extends StatelessWidget {
                             height: 20,
                           ),
                           TextFormField(
-                            initialValue: userData.email,
+                            controller: email,
                             decoration: textFieldEmailDecoration,
                             keyboardType: TextInputType.emailAddress,
                           ),
@@ -107,7 +111,7 @@ class UpdateProfileMobile extends StatelessWidget {
                             height: 20,
                           ),
                           TextFormField(
-                            initialValue: userData.phone,
+                            controller: phone,
                             decoration: textFieldPhoneDecoration,
                             keyboardType: TextInputType.phone,
                           ),
@@ -116,7 +120,14 @@ class UpdateProfileMobile extends StatelessWidget {
                           ),
                           CustomElevatedButton(
                               btText: "Guardar",
-                              onPressed: () {},
+                              onPressed: () async {
+                                final userData = UserModel(
+                                    name: fullname.text,
+                                    email: email.text,
+                                    phone: phone.text);
+
+                                await controller.updateRecord(userData);
+                              },
                               btStyle: primaryButton),
                           const SizedBox(
                             height: 20,
