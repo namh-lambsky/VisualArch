@@ -73,15 +73,13 @@ class _SignUpFormState extends State<SignUpForm> {
                 onPressed: () {
                   if (formKey.currentState!.validate()) {
                     if (controller.password.text == controller.passwordC.text) {
-                      UserModel user = UserModel(
-                          email: controller.email.text.trim(),
-                          name: controller.fullname.text,
-                          password: controller.password.text,
-                          phone: controller.phone.text);
-
                       Map<String, dynamic> values;
                       SignupController.instance
-                          .createUser(user)
+                          .createUser(
+                              controller.email.text.trim(),
+                              controller.fullname.text,
+                              controller.phone.text,
+                              controller.password.text)
                           .then((Map<String, dynamic> map) {
                         setState(() {
                           values = map;

@@ -4,7 +4,8 @@ import 'package:layout/layout.dart';
 import 'package:visualarch_v1/src/constants/colors.dart';
 import 'package:visualarch_v1/src/constants/images_strings.dart';
 import 'package:visualarch_v1/src/constants/styles.dart';
-import 'package:visualarch_v1/src/repository/authentication_repository/auth_repo.dart';
+import 'package:get/get.dart';
+import 'package:visualarch_v1/src/features/menus/screens/profile_screen/profile_menu.dart';
 
 class MainMenuMobile extends StatelessWidget {
   const MainMenuMobile({Key? key}) : super(key: key);
@@ -44,7 +45,7 @@ class MainMenuMobile extends StatelessWidget {
                 borderRadius: BorderRadius.circular(50), color: Colors.white),
             child: IconButton(
               onPressed: () {
-                AuthenticationRepository.instance.logout();
+                Get.to(()=>const ProfileMenu());
               },
               icon: const Image(
                 image: AssetImage(accIcon),

@@ -16,8 +16,29 @@ class SignupController extends GetxController {
   final userRepo = Get.put(UserRepository());
   final authRepo = Get.put(AuthenticationRepository());
 
-  Future<Map<String, dynamic>> createUser(UserModel user) async {
-    await authRepo.createUserAuth(user.email, user.password);
+  Future<Map<String, dynamic>> createUser(
+    String email,
+    String name,
+    String phone,
+    String password,
+  ) async {
+    await authRepo.createUserAuth(email, password);
+    clearText();
+    UserModel user = UserModel(
+      id: authRepo.firebaseUser.value!.uid,
+      email: email,
+      name: name,
+      phone: phone,
+    );
+
     return await userRepo.createUserDB(user);
+  }
+
+  void clearText() {
+    email.clear();
+    password.clear();
+    passwordC.clear();
+    fullname.clear();
+    phone.clear();
   }
 }

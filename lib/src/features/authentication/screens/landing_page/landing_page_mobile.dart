@@ -46,9 +46,12 @@ class LandingPageMobile extends StatelessWidget {
                 const SizedBox(
                   height: 30,
                 ),
-                CustomElevatedButton(btText: "Iniciar Sesión", onPressed: () {
-                  Get.to(() => const LoginPage());
-                }, btStyle: primaryButton),
+                CustomElevatedButton(btText: "Registrarse",
+                  onPressed: () {
+                    Get.to(() => const SignUpPage());
+                  },
+                  btStyle: primaryButton,
+                ),
                 const SizedBox(
                   height: 30,
                 ),
@@ -63,12 +66,10 @@ class LandingPageMobile extends StatelessWidget {
                 const SizedBox(
                   height: 30,
                 ),
-                CustomElevatedButton(btText: "Registrarse",
-                  onPressed: () {
-                    Get.to(() => const SignUpPage());
-                  },
-                  btStyle: primaryButton,
-                ),
+
+                CustomElevatedButton(btText: "Iniciar Sesión", onPressed: () {
+                  Get.to(() => const LoginPage());
+                }, btStyle: primaryButton),
               ],
             ),
           ),

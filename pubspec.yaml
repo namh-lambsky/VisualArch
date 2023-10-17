@@ -11,15 +11,24 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  google_fonts: ^6.1.0
+
+  #ICONS
   cupertino_icons: ^1.0.6
-  flutter_svg: ^2.0.7
+  line_awesome_flutter: ^2.0.0
+
+  #FIREBASE
   firebase_core: ^2.17.0
   firebase_auth: ^4.10.1
+  cloud_firestore: ^4.9.3
+
+  #CORE
   get: ^4.6.6
   layout: ^1.0.5
+
+  #UTILITIES
+  flutter_svg: ^2.0.7
   flutter_otp_text_field: ^1.1.1
-  cloud_firestore: ^4.9.3
+  quickalert: ^1.0.2
 
 
 

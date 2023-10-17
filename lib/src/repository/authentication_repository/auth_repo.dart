@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:visualarch_v1/src/features/authentication/screens/landing_page/landing_page.dart';
 import 'package:visualarch_v1/src/features/menus/screens/main_menu/main_menu.dart';
 import 'package:visualarch_v1/src/repository/authentication_repository/exceptions/SignInWithEmailAndPasswordFailure.dart';
+import 'package:visualarch_v1/src/utils/return_message.dart';
 
 import 'exceptions/SignUpWithEmailAndPasswordFailure.dart';
 
@@ -20,13 +21,7 @@ class AuthenticationRepository extends GetxController {
     ever(firebaseUser, _setInitialScreen);
   }
 
-  Map<String, dynamic> loadMessage(bool value, String message){
-    Map<String, dynamic> returnMessage = {
-      "bool": value,
-      "message": message
-    };
-    return returnMessage;
-  }
+
 
   _setInitialScreen(User? user) {
     user == null

@@ -19,6 +19,12 @@ const TextStyle buttonTextStyle = TextStyle(
   fontFamily: 'SemiBold',
 );
 
+const TextStyle buttonWTextStyle = TextStyle(
+  fontSize: 16,
+  color: Colors.white,
+  fontFamily: 'Semibold',
+);
+
 const TextStyle titleStyle =
     TextStyle(fontSize: 24, color: Colors.white, fontFamily: 'SemiBold');
 
@@ -128,3 +134,8 @@ ButtonStyle primaryButton = ElevatedButton.styleFrom(
     elevation: 0,
     backgroundColor: primaryColor,
     minimumSize: const Size(280, 65));
+
+ButtonStyle warningButton = ElevatedButton.styleFrom(
+    elevation: 0,
+    backgroundColor: Colors.redAccent,
+    minimumSize: const Size(160, 55));

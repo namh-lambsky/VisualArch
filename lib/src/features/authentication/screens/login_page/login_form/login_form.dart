@@ -68,6 +68,7 @@ class _LoginFormState extends State<LoginForm> {
                         .then((Map<String, dynamic> map) {
                       setState(() {
                         values = map;
+                        values['bool']?{}:
                         showDialog(
                             context: context,
                             builder: (context) => CustomDialog(

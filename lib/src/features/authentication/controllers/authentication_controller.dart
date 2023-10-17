@@ -11,14 +11,27 @@ class AuthenticationController extends GetxController {
   final fullname = TextEditingController();
   final phone = TextEditingController();
 
-
-
   Future<Map<String, dynamic>> resetPasswordByEmail(String email) {
+    clearText();
     return AuthenticationRepository.instance.resetPassword(email);
   }
 
   Future<Map<String, dynamic>> login(String email, String password) {
+    clearText();
     return AuthenticationRepository.instance
         .loginUserWithEmailAndPassword(email, password);
+  }
+
+  void logout() {
+    AuthenticationRepository.instance.logout();
+    clearText();
+  }
+
+  void clearText() {
+    email.clear();
+    password.clear();
+    passwordC.clear();
+    fullname.clear();
+    phone.clear();
   }
 }
