@@ -7,6 +7,12 @@ import 'package:visualarch_v1/src/repository/user_repository/user_repository.dar
 class SignupController extends GetxController {
   static SignupController get instance => Get.find();
 
+  @override
+  void onInit() {
+    super.onInit();
+    clearText();
+  }
+
   final email = TextEditingController();
   final password = TextEditingController();
   final passwordC = TextEditingController();
@@ -16,7 +22,7 @@ class SignupController extends GetxController {
   final userRepo = Get.put(UserRepository());
   final authRepo = Get.put(AuthenticationRepository());
 
-  Future<Map<String, dynamic>> createUser(
+  Future<void> createUser(
     String email,
     String name,
     String phone,
@@ -31,7 +37,7 @@ class SignupController extends GetxController {
       phone: phone,
     );
 
-    return await userRepo.createUserDB(user);
+    await userRepo.createUserDB(user);
   }
 
   void clearText() {

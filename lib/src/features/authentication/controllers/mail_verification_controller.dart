@@ -14,7 +14,7 @@ class MailVerificationController extends GetxController {
     setTimerAutoRedirect();
   }
 
-  Future<Map<String, dynamic>> sendVerificationEmail() {
+  Future<void> sendVerificationEmail() {
     return AuthenticationRepository.instance.sendEmailVerification();
   }
 

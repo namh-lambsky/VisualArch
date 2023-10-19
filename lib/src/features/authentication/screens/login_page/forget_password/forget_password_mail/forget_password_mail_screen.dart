@@ -15,7 +15,8 @@ class ForgetPasswordMailScreen extends StatefulWidget {
   const ForgetPasswordMailScreen({Key? key}) : super(key: key);
 
   @override
-  State<ForgetPasswordMailScreen> createState() => _ForgetPasswordMailScreenState();
+  State<ForgetPasswordMailScreen> createState() =>
+      _ForgetPasswordMailScreenState();
 }
 
 class _ForgetPasswordMailScreenState extends State<ForgetPasswordMailScreen> {
@@ -28,60 +29,47 @@ class _ForgetPasswordMailScreenState extends State<ForgetPasswordMailScreen> {
         backgroundColor: backgroundColor,
         body: Container(
             padding: EdgeInsets.all(padding * 4),
-            child: SingleChildScrollView(child: Column(
-              children: [
-                const SizedBox(
-                  height: 80,
-                ),
-                CustomHeader(
-                    image: SvgPicture.asset(
-                      forgetPasswordImage,
-                      height: 220,
-                      width: 220,
-                    ),
-                    title: "Recupera tu cuenta!",
-                    subtitle:
-                    "Escribe el correo electronico que usaste para crear tu cuenta:"),
-                const SizedBox(
-                  height: 30,
-                ),
-                Form(
-                    child: Column(
-                      children: [
-                        TextFormField(
-                          controller: controller.email,
-                          decoration: textFieldEmailDecoration,
-                        ),
-                        const SizedBox(
-                          height: 30,
-                        ),
-                        CustomElevatedButton(
-                          btText: "Siguiente",
-                          onPressed: () {
-                            Map<String, dynamic> values;
-                            AuthenticationController.instance
-                                .resetPasswordByEmail(
-                                controller.email.text)
-                                .then((Map<String, dynamic> map) {
-                              setState(() {
-                                values = map;
-                                showDialog(
-                                    context: context,
-                                    builder: (context) =>
-                                        CustomDialog(
-                                          value: values['bool'],
-                                          message: values['message'],
-                                        )
-                                );
-                              });
-                            });
-                          },
-                          btStyle: primaryButton,
-                        )
-                      ],
-                    ))
-              ],
-            ),)
-        ));
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  const SizedBox(
+                    height: 80,
+                  ),
+                  CustomHeader(
+                      image: SvgPicture.asset(
+                        forgetPasswordImage,
+                        height: 220,
+                        width: 220,
+                      ),
+                      title: "Recupera tu cuenta!",
+                      subtitle:
+                          "Escribe el correo electronico que usaste para crear tu cuenta:"),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  Form(
+                      child: Column(
+                    children: [
+                      TextFormField(
+                        controller: controller.email,
+                        decoration: textFieldEmailDecoration,
+                      ),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      CustomElevatedButton(
+                        btText: "Siguiente",
+                        onPressed: () {
+                          Map<String, dynamic> values;
+                          AuthenticationController.instance
+                              .resetPasswordByEmail(controller.email.text);
+                        },
+                        btStyle: primaryButton,
+                      )
+                    ],
+                  ))
+                ],
+              ),
+            )));
   }
 }

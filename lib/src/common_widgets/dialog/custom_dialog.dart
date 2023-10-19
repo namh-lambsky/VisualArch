@@ -1,27 +1,68 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:visualarch_v1/src/constants/colors.dart';
 import 'package:visualarch_v1/src/constants/styles.dart';
 
 class CustomDialog extends StatelessWidget {
-  final bool value;
-  final String message;
+  String title;
+  String message;
+  IconData iconData;
+  bool hasButtons;
+  Color iconColor;
+  VoidCallback nextCallback;
+  String btText;
 
-  const CustomDialog({Key? key, required this.value, required this.message});
+  CustomDialog(
+      {Key? key,
+      required this.title,
+      required this.iconData,
+      required this.nextCallback,
+      required this.message,
+      this.hasButtons = false,
+      this.btText = "Ok",
+      this.iconColor = Colors.white})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return AlertDialog(
-      icon: value
-          ? const Icon(
-              Icons.check_circle_outline,
-              color: Colors.green,
-            )
-          : const Icon(
-              Icons.cancel_outlined,
-              color: Colors.red,
-            ),
-      content: Text(message,style: subtitleStyleS,textAlign: TextAlign.center),
-      backgroundColor: modalBackgroundColor,
+    return BackdropFilter(
+      filter: ImageFilter.blur(sigmaX: 6, sigmaY: 6),
+      child: AlertDialog(
+        backgroundColor: modalBackgroundColor,
+        icon: Icon(iconData),
+        iconColor: iconColor,
+        title: Text(
+          title,
+          style: titleStyle,
+        ),
+        content: Text(
+          message,
+          style: extraLightStyle,
+        ),
+        actions: hasButtons
+            ? <Widget>[
+                ElevatedButton(
+                  onPressed: nextCallback,
+                  style: primaryButton,
+                  child: Text(
+                    btText,
+                    style: extraLightStyle,
+                  ),
+                )
+              ]
+            : <Widget>[
+                ElevatedButton(
+                  onPressed: nextCallback,
+                  style: primaryButton,
+                  child: Text(
+                    btText,
+                    style: extraLightStyle,
+                  ),
+                )
+              ],
+      ),
     );
   }
 }

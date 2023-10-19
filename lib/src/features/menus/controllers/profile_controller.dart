@@ -5,8 +5,6 @@ import 'package:visualarch_v1/src/repository/authentication_repository/auth_repo
 import 'package:visualarch_v1/src/repository/user_repository/user_repository.dart';
 
 class ProfileController extends GetxController {
-
-
   static ProfileController get instance => Get.find();
 
   final _authRepo = Get.put(AuthenticationRepository());
@@ -16,14 +14,13 @@ class ProfileController extends GetxController {
     final email = _authRepo.firebaseUser.value?.email;
     if (email != null) {
       return _userRepo.getUserDetails(email);
-    }else{
+    } else {
       print("ola");
     }
   }
 
-  void updateRecord(UserModel user)async{
-    await _userRepo.updateUser(user);
+  updateRecord(UserModel user) async {
+    final id = _authRepo.firebaseUser.value!.uid;
+    await _userRepo.updateUser(user,id);
   }
-
-
 }

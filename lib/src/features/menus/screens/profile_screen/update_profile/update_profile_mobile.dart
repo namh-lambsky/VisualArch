@@ -103,14 +103,6 @@ class UpdateProfileMobile extends StatelessWidget {
                             height: 20,
                           ),
                           TextFormField(
-                            controller: email,
-                            decoration: textFieldEmailDecoration,
-                            keyboardType: TextInputType.emailAddress,
-                          ),
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          TextFormField(
                             controller: phone,
                             decoration: textFieldPhoneDecoration,
                             keyboardType: TextInputType.phone,
@@ -148,7 +140,7 @@ class UpdateProfileMobile extends StatelessWidget {
                 );
               } else {
                 return const Text(
-                  "Algo salio mal :C",
+                  "Algo salio mal :C \nVerifica tu conexión a internet",
                   style: titleStyle,
                 );
               }

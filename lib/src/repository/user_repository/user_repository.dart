@@ -1,22 +1,45 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:visualarch_v1/src/features/authentication/models/user_model.dart';
-import 'package:visualarch_v1/src/utils/return_message.dart';
+
+import '../../common_widgets/dialog/custom_dialog.dart';
 
 class UserRepository extends GetxController {
   static UserRepository get instance => Get.find();
 
   final _db = FirebaseFirestore.instance;
 
-  Future<Map<String, dynamic>> createUserDB(
+  Future<void> createUserDB(
       UserModel user) async {
     try {
       await _db.collection("users").doc(user.id).set(user.toJson());
-      return loadMessage(true, "Cuenta creada con exito!");
+      Get.dialog(
+        CustomDialog(
+            title: "Exito!",
+            iconData: Icons.check_circle_outline,
+            nextCallback: () => Get.back(),
+            message: "Usuario creado exitosamente!",
+            iconColor: Colors.lightGreen),
+      );
     } on FirebaseException catch (e) {
-      return loadMessage(false, e.toString());
+      Get.dialog(
+        CustomDialog(
+            title: "Error!",
+            iconData: Icons.cancel_outlined,
+            nextCallback: () => Get.back(),
+            message: e.toString(),
+            iconColor: Colors.redAccent),
+      );
     } catch (_) {
-      return loadMessage(false, "Error Desconocido :c");
+      Get.dialog(
+        CustomDialog(
+            title: "Error!",
+            iconData: Icons.cancel_outlined,
+            nextCallback: () => Get.back(),
+            message: "Error desconocido, intente de nuevo más tarde",
+            iconColor: Colors.redAccent),
+      );
     }
   }
 
@@ -32,8 +55,28 @@ class UserRepository extends GetxController {
     return userData;
   }
 
-  Future<void>updateUser(UserModel user)async{
-    await _db.collection("users").doc(user.id).update(user.toJson());
+  Future<void>updateUser(UserModel user,String id)async{
+
+    try {
+      await _db.collection("users").doc(id).update(user.toJson());
+      Get.dialog(
+        CustomDialog(
+            title: "Exito!",
+            iconData: Icons.check_circle_outline,
+            nextCallback: () => Get.back(),
+            message: "Usuario actualizado exitosamente!",
+            iconColor: Colors.lightGreen),
+      );
+    } on Exception catch (e) {
+      Get.dialog(
+        CustomDialog(
+            title: "Error!",
+            iconData: Icons.cancel_outlined,
+            nextCallback: () => Get.back(),
+            message: e.toString(),
+            iconColor: Colors.redAccent),
+      );
+    }
   }
 
 }

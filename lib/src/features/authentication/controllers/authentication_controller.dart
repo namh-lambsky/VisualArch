@@ -1,9 +1,15 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:visualarch_v1/src/repository/authentication_repository/auth_repo.dart';
 
 class AuthenticationController extends GetxController {
   static AuthenticationController get instance => Get.find();
+
+  @override
+  void onInit() {
+    super.onInit();
+    clearText();
+  }
 
   final email = TextEditingController();
   final password = TextEditingController();
@@ -11,14 +17,14 @@ class AuthenticationController extends GetxController {
   final fullname = TextEditingController();
   final phone = TextEditingController();
 
-  Future<Map<String, dynamic>> resetPasswordByEmail(String email) {
+  void resetPasswordByEmail(String email) {
     clearText();
-    return AuthenticationRepository.instance.resetPassword(email);
+    AuthenticationRepository.instance.resetPassword(email);
   }
 
-  Future<Map<String, dynamic>> login(String email, String password) {
+  void login(String email, String password) {
     clearText();
-    return AuthenticationRepository.instance
+    AuthenticationRepository.instance
         .loginUserWithEmailAndPassword(email, password);
   }
 

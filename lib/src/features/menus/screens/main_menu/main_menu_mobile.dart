@@ -7,6 +7,8 @@ import 'package:visualarch_v1/src/constants/styles.dart';
 import 'package:get/get.dart';
 import 'package:visualarch_v1/src/features/menus/screens/profile_screen/profile_menu.dart';
 
+import 'item_card/item_card.dart';
+
 class MainMenuMobile extends StatelessWidget {
   const MainMenuMobile({Key? key}) : super(key: key);
 
@@ -18,7 +20,7 @@ class MainMenuMobile extends StatelessWidget {
       appBar: AppBar(
         leading: const Icon(
           Icons.menu,
-          color: Colors.white,
+          color: Colors.transparent,
         ),
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -45,7 +47,7 @@ class MainMenuMobile extends StatelessWidget {
                 borderRadius: BorderRadius.circular(50), color: Colors.white),
             child: IconButton(
               onPressed: () {
-                Get.to(()=>const ProfileMenu());
+                Get.to(() => const ProfileMenu());
               },
               icon: const Image(
                 image: AssetImage(accIcon),
@@ -57,12 +59,43 @@ class MainMenuMobile extends StatelessWidget {
         ],
       ),
       body: Container(
-        padding: EdgeInsets.all(padding * 4),
-        child: const Column(
+        child: Column(
           children: [
-            Text(
-              "zapato",
-              style: titleStyle,
+            Padding(
+              padding: EdgeInsets.all(padding * 4),
+              child: const Column(
+                children: [
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text("Bienvenido! ", style: subtitleStyle),
+                  ),
+                  SizedBox(
+                    height: 40,
+                  ),
+                  Text(
+                    "Recorridos recientemente añadidos",
+                    style: titleStyle,
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              height: 350,
+              child: ListView.builder(
+                  itemCount: 3,
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (context, index) {
+                    return const ItemCard(
+                      builderName: "Amarilo",
+                      builderLogoPath: amariloLogo,
+                      projectName: "Balcones del portal",
+                      projectLogoPath: projectLogo,
+                      imagePath: projectImage,
+                      city: "Bogotá",
+                      price: 188200000,
+                      area: 51,
+                    );
+                  }),
             )
           ],
         ),

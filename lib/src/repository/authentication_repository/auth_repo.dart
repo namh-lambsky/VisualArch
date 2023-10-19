@@ -1,9 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:visualarch_v1/src/common_widgets/dialog/custom_dialog.dart';
 import 'package:visualarch_v1/src/features/authentication/screens/landing_page/landing_page.dart';
 import 'package:visualarch_v1/src/features/menus/screens/main_menu/main_menu.dart';
 import 'package:visualarch_v1/src/repository/authentication_repository/exceptions/SignInWithEmailAndPasswordFailure.dart';
-import 'package:visualarch_v1/src/utils/return_message.dart';
 
 import 'exceptions/SignUpWithEmailAndPasswordFailure.dart';
 
@@ -21,60 +22,119 @@ class AuthenticationRepository extends GetxController {
     ever(firebaseUser, _setInitialScreen);
   }
 
-
-
   _setInitialScreen(User? user) {
     user == null
         ? Get.offAll(() => const LandingPage())
         : Get.offAll(() => const MainMenu());
   }
 
-  Future<Map<String, dynamic>> createUserAuth(
-      String email, String password) async {
+  Future<void> createUserAuth(String email, String password) async {
     try {
       await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
-      return loadMessage(true, "");
+      Get.dialog(
+        CustomDialog(
+            title: "Exito!",
+            iconData: Icons.check_circle_outline,
+            nextCallback: () => Get.back(),
+            message: "Usuario creado exitosamente!",
+            iconColor: Colors.lightGreen),
+      );
     } on FirebaseAuthException catch (e) {
       final ex = SignUpWithEmailAndPasswordFailure(e.code);
-      return loadMessage(false, ex.message);
+      Get.dialog(
+        CustomDialog(
+            title: "Error!",
+            iconData: Icons.cancel_outlined,
+            nextCallback: () => Get.back(),
+            message: ex.message,
+            iconColor: Colors.redAccent),
+      );
     } catch (_) {
-      return loadMessage(false, "Error desconocido");
+      Get.dialog(
+        CustomDialog(
+            title: "Error!",
+            iconData: Icons.cancel_outlined,
+            nextCallback: () => Get.back(),
+            message: "Error desconocido, intente de nuevo más tarde",
+            iconColor: Colors.redAccent),
+      );
     }
   }
 
-  Future<Map<String, dynamic>> loginUserWithEmailAndPassword(
+  Future<void> loginUserWithEmailAndPassword(
       String email, String password) async {
     try {
       await _auth.signInWithEmailAndPassword(email: email, password: password);
-      return loadMessage(true, "");
     } on FirebaseAuthException catch (e) {
       final ex = SignInWithEmailAndPasswordFailure(e.code);
-      return loadMessage(false, ex.message);
+      Get.dialog(
+        CustomDialog(
+            title: "Error!",
+            iconData: Icons.cancel_outlined,
+            nextCallback: () => Get.back(),
+            message: ex.message,
+            iconColor: Colors.redAccent),
+      );
     } catch (_) {
-      return loadMessage(false, "Error desconocido");
+      Get.dialog(
+        CustomDialog(
+            title: "Error!",
+            iconData: Icons.cancel_outlined,
+            nextCallback: () => Get.back(),
+            message: "Error desconocido, intente de nuevo más tarde",
+            iconColor: Colors.redAccent),
+      );
     }
   }
 
-  Future<Map<String, dynamic>> sendEmailVerification() async {
+  Future<void> sendEmailVerification() async {
     try {
       await _auth.currentUser?.sendEmailVerification();
-      return loadMessage(true, "");
+
     } on FirebaseAuthException catch (ex) {
-      return loadMessage(false, ex.toString());
+      Get.dialog(
+        CustomDialog(
+            title: "Error!",
+            iconData: Icons.cancel_outlined,
+            nextCallback: () => Get.back(),
+            message: ex.toString(),
+            iconColor: Colors.redAccent),
+      );
     } catch (_) {
-      return loadMessage(false, "Error desconocido");
+      Get.dialog(
+        CustomDialog(
+            title: "Error!",
+            iconData: Icons.cancel_outlined,
+            nextCallback: () => Get.back(),
+            message: "Error desconocido, intente de nuevo más tarde",
+            iconColor: Colors.redAccent),
+      );
     }
   }
 
   Future<void> logout() async => await _auth.signOut();
 
-  Future<Map<String, dynamic>> resetPassword(String email) async {
+  Future<void> resetPassword(String email) async {
     try {
       await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
-      return loadMessage(true, "Revisa tu correo! en contados instantes te llegará un link para recuperar tu cuenta");
+      Get.dialog(
+        CustomDialog(
+            title: "Exito!",
+            iconData: Icons.check_circle_outline,
+            nextCallback: () => Get.back(),
+            message: "Revisa tu correo! en contados instantes te llegará un link para recuperar tu cuenta",
+            iconColor: Colors.lightGreen),
+      );
     } on FirebaseAuthException catch (ex) {
-      return loadMessage(false, ex.toString());
+      Get.dialog(
+        CustomDialog(
+            title: "Error!",
+            iconData: Icons.cancel_outlined,
+            nextCallback: () => Get.back(),
+            message: ex.toString(),
+            iconColor: Colors.redAccent),
+      );
     }
   }
 }

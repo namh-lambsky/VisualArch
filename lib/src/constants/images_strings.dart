@@ -7,3 +7,6 @@ const String otpImage= "assets/images/otp_image.svg";
 const String miniIcon="assets/images/mini_logo.svg";
 const String accIcon="assets/images/account_icon.png";
 const String verifyImage="assets/images/verify_image.svg";
+const String amariloLogo="assets/images/amarilo-logo.png";
+const String projectLogo="assets/images/logo_balcones_del_portal.jpg";
+const String projectImage="assets/images/fachada_0.jpg";

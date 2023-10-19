@@ -34,6 +34,9 @@ const TextStyle subtitleStyle =
 const TextStyle subtitleStyleS =
     TextStyle(fontSize: 16, color: Colors.white, fontFamily: 'Regular');
 
+const TextStyle subtitleStyleSB =
+TextStyle(fontSize: 16, color: Colors.black, fontFamily: 'Regular');
+
 InputDecoration textFieldEmailDecoration = InputDecoration(
   prefixIcon: const Icon(Icons.alternate_email),
   hintText: "E-mail",
@@ -87,48 +90,6 @@ InputDecoration textFieldPhoneDecoration = InputDecoration(
   fillColor: Colors.grey.shade200,
   filled: true,
 );
-
-InputDecoration textFieldPasswordDecoration = InputDecoration(
-    prefixIcon: const Icon(Icons.fingerprint),
-    hintText: "Contraseña",
-    enabledBorder: const OutlineInputBorder(
-        borderSide: BorderSide(color: Colors.white),
-        borderRadius: BorderRadius.all(Radius.elliptical(20, 20))),
-    focusedBorder: OutlineInputBorder(
-      borderRadius: const BorderRadius.all(Radius.elliptical(20, 20)),
-      borderSide: BorderSide(color: Colors.grey.shade400),
-    ),
-    errorBorder: OutlineInputBorder(
-      borderRadius: const BorderRadius.all(Radius.elliptical(20, 20)),
-      borderSide: BorderSide(color: Colors.red.shade400),
-    ),
-    fillColor: Colors.grey.shade200,
-    filled: true,
-    suffixIcon: IconButton(
-      icon: const Icon(Icons.remove_red_eye),
-      onPressed: () {},
-    ));
-
-InputDecoration textFieldPasswordRDecoration = InputDecoration(
-    prefixIcon: const Icon(Icons.fingerprint),
-    hintText: "Confirmar Contraseña",
-    enabledBorder: const OutlineInputBorder(
-        borderSide: BorderSide(color: Colors.white),
-        borderRadius: BorderRadius.all(Radius.elliptical(20, 20))),
-    focusedBorder: OutlineInputBorder(
-      borderRadius: const BorderRadius.all(Radius.elliptical(20, 20)),
-      borderSide: BorderSide(color: Colors.grey.shade400),
-    ),
-    errorBorder: OutlineInputBorder(
-      borderRadius: const BorderRadius.all(Radius.elliptical(20, 20)),
-      borderSide: BorderSide(color: Colors.red.shade400),
-    ),
-    fillColor: Colors.grey.shade200,
-    filled: true,
-    suffixIcon: IconButton(
-      icon: const Icon(Icons.remove_red_eye),
-      onPressed: () {},
-    ));
 
 ButtonStyle primaryButton = ElevatedButton.styleFrom(
     elevation: 0,
