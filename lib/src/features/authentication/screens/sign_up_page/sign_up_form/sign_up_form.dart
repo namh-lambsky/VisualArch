@@ -42,8 +42,6 @@ class _SignUpFormState extends State<SignUpForm> {
             TextFormField(
               validator: Validators.compose([
                 Validators.required("Este campo esta vacio!"),
-                Validators.min(
-                    3, "Los nombres no pueden ser menores a 3 caracteres!")
               ]),
               controller: controller.fullname,
               decoration: textFieldNameDecoration,
