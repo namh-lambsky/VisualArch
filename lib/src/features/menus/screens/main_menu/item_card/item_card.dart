@@ -29,13 +29,14 @@ class ItemCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 800,
-      child: Card(
-        semanticContainer: true,
-        clipBehavior: Clip.antiAliasWithSaveLayer,
-        margin: const EdgeInsets.all(10),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+    return Expanded(
+        child: Card(
+      semanticContainer: true,
+      clipBehavior: Clip.antiAliasWithSaveLayer,
+      margin: const EdgeInsets.all(15),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(30),
         child: Container(
           width: context.layout.maxWidth - 20,
           color: Colors.grey[300],
@@ -101,6 +102,6 @@ class ItemCard extends StatelessWidget {
           ),
         ),
       ),
-    );
+    ));
   }
 }

@@ -18,9 +18,10 @@ dependencies:
   line_awesome_flutter: ^2.0.0
 
   #FIREBASE
-  firebase_core: ^2.17.0
-  firebase_auth: ^4.10.1
-  cloud_firestore: ^4.9.3
+  firebase_core: ^2.19.0
+  firebase_auth: ^4.11.1
+  cloud_firestore: ^4.11.0
+  firebase_storage: ^11.3.1
 
   #CORE
   get: ^4.6.6
@@ -32,9 +33,10 @@ dependencies:
   wc_form_validators: ^1.0.0
   flutter_native_splash: ^2.3.4
   simple_fx: ^1.0.1
-
-
-
+  image_cropper: ^5.0.0
+  image_picker: ^1.0.4
+  path_provider: ^2.1.1
+  flutter_image_compress: ^2.1.0
 
 dev_dependencies:
   flutter_test:

@@ -39,6 +39,9 @@ class _SignUpFormState extends State<SignUpForm> {
         key: formKey,
         child: Column(
           children: [
+
+
+
             TextFormField(
               validator: Validators.compose([
                 Validators.required("Este campo esta vacio!"),

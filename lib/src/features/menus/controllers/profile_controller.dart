@@ -7,6 +7,7 @@ import 'package:visualarch_v1/src/repository/user_repository/user_repository.dar
 class ProfileController extends GetxController {
   static ProfileController get instance => Get.find();
 
+  final profilePicURL= <String>[].obs;
   final _authRepo = Get.put(AuthenticationRepository());
   final _userRepo = Get.put(UserRepository());
 
@@ -14,8 +15,6 @@ class ProfileController extends GetxController {
     final email = _authRepo.firebaseUser.value?.email;
     if (email != null) {
       return _userRepo.getUserDetails(email);
-    } else {
-      print("ola");
     }
   }
 
