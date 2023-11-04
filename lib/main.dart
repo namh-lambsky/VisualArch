@@ -35,8 +35,6 @@ class MyApp extends StatelessWidget {
       ),
       title: "VisualArch",
       debugShowCheckedModeBanner: false,
-      defaultTransition: Transition.leftToRightWithFade,
-      transitionDuration: const Duration(milliseconds: 500),
       theme: ThemeData(
 
         useMaterial3: true,

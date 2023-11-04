@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:layout/layout.dart';
+import 'package:visualarch_v1/src/constants/durations.dart';
 import 'package:visualarch_v1/src/features/authentication/screens/sign_up_page/sign_up_page.dart';
 
 
@@ -48,7 +49,7 @@ class LandingPageMobile extends StatelessWidget {
                 ),
                 CustomElevatedButton(btText: "Registrarse",
                   onPressed: () {
-                    Get.to(() => const SignUpPage());
+                    Get.to(() => const SignUpPage(),transition: Transition.rightToLeftWithFade,duration: const Duration(milliseconds: 700));
                   },
                   btStyle: primaryButton,
                 ),
@@ -68,11 +69,11 @@ class LandingPageMobile extends StatelessWidget {
                 ),
 
                 CustomElevatedButton(btText: "Iniciar Sesión", onPressed: () {
-                  Get.to(() => const LoginPage());
+                  Get.to(() => const LoginPage(),transition: Transition.leftToRightWithFade,duration: defaultTransitionD);
                 }, btStyle: primaryButton),
               ],
             ),
           ),
-        ));
+        ),);
   }
 }

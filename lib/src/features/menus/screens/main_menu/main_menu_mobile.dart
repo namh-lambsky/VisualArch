@@ -5,8 +5,10 @@ import 'package:visualarch_v1/src/constants/colors.dart';
 import 'package:visualarch_v1/src/constants/images_strings.dart';
 import 'package:visualarch_v1/src/constants/styles.dart';
 import 'package:get/get.dart';
+import 'package:visualarch_v1/src/features/menus/controllers/profile_controller.dart';
 import 'package:visualarch_v1/src/features/menus/screens/profile_screen/profile_menu.dart';
 
+import '../../../../common_widgets/user_image/user_image.dart';
 import 'item_card/item_card.dart';
 
 class MainMenuMobile extends StatelessWidget {
@@ -14,6 +16,9 @@ class MainMenuMobile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(ProfileController());
+
+    controller.getUserPhoto();
     double padding = context.layout.value(xs: 8);
     return Scaffold(
       backgroundColor: backgroundColor,
@@ -42,63 +47,66 @@ class MainMenuMobile extends StatelessWidget {
         ),
         backgroundColor: Colors.transparent,
         actions: [
-          Container(
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(50), color: Colors.white),
-            child: IconButton(
-              onPressed: () {
-                Get.to(() => const ProfileMenu());
+          GestureDetector(
+              onTap: () {
+                Get.to(() => const ProfileMenu(),transition: Transition.rightToLeftWithFade);
               },
-              icon: const Image(
-                image: AssetImage(accIcon),
-                height: 50,
-                width: 50,
-              ),
-            ),
-          )
+              child: Container(
+                width: 55,
+                height: 55,
+                decoration: BoxDecoration(
+                  borderRadius: const BorderRadius.all( Radius.circular(50.0)),
+                  border: Border.all(
+                    color: Colors.green.withOpacity(0.7),
+                    width: 2.0,
+                  ),
+                ),
+                child: UserImage(
+                  width: 50,
+                  height: 50,
+                ),
+              )),
         ],
       ),
-      body: Container(
-        child: Column(
-          children: [
-            Padding(
-              padding: EdgeInsets.all(padding * 4),
-              child: const Column(
-                children: [
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text("Bienvenido! ", style: subtitleStyle),
-                  ),
-                  SizedBox(
-                    height: 40,
-                  ),
-                  Text(
-                    "Recorridos recientemente añadidos",
-                    style: titleStyle,
-                  ),
-                ],
-              ),
+      body: Column(
+        children: [
+          Padding(
+            padding: EdgeInsets.all(padding * 4),
+            child: const Column(
+              children: [
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text("Bienvenido! ", style: subtitleStyle),
+                ),
+                SizedBox(
+                  height: 40,
+                ),
+                Text(
+                  "Recorridos recientemente añadidos",
+                  style: titleStyle,
+                ),
+              ],
             ),
-            Container(
-              height: 350,
-              child: ListView.builder(
-                  itemCount: 3,
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (context, index) {
-                    return const ItemCard(
-                      builderName: "Amarilo",
-                      builderLogoPath: amariloLogo,
-                      projectName: "Balcones del portal",
-                      projectLogoPath: projectLogo,
-                      imagePath: projectImage,
-                      city: "Bogotá",
-                      price: 188200000,
-                      area: 51,
-                    );
-                  }),
-            )
-          ],
-        ),
+          ),
+          Container(
+            height: 450,
+            child: ListView.builder(
+                itemCount: 3,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context, index) {
+                  return const ItemCard(
+                    builderName: "Amarilo",
+                    builderLogoPath: amariloLogo,
+                    projectName: "Balcones del portal",
+                    projectLogoPath: projectLogo,
+                    imagePath: projectImage,
+                    city: "Bogotá",
+                    price: 188200000,
+                    area: 51,
+                  );
+                }),
+          )
+        ],
       ),
     );
   }

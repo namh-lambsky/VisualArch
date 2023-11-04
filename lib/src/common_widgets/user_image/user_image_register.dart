@@ -6,26 +6,25 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:visualarch_v1/src/common_widgets/modal/modal_image.dart';
 import 'package:visualarch_v1/src/constants/colors.dart';
-import 'package:visualarch_v1/src/features/menus/controllers/profile_controller.dart';
 
 import '../../constants/images_strings.dart';
 import '../../features/authentication/controllers/signup_controller.dart';
 
-class UserImage extends StatelessWidget {
+class UserImageRegister extends StatelessWidget {
   final bool isCustomizable;
   final double width;
   final double height;
 
-  UserImage(
-      {Key? key,
-      this.isCustomizable = false,
-      this.width = 150,
-      this.height = 150})
-      : super(key: key);
+  UserImageRegister({
+    Key? key,
+    this.isCustomizable = false,
+    this.width=150,
+    this.height=150
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(ProfileController());
+    final controller = Get.put(SignupController());
 
     return Column(
       children: <Widget>[
@@ -53,7 +52,11 @@ class UserImage extends StatelessWidget {
                             color: Colors.grey.shade800,
                             image: DecorationImage(
                               fit: BoxFit.fitHeight,
-                              image: NetworkImage(controller.imageUrl.value),
+                              image: FileImage(
+                                File(
+                                  controller.imageUrl.value,
+                                ),
+                              ),
                             ),
                           ),
                         ),

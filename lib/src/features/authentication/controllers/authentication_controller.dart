@@ -11,6 +11,22 @@ class AuthenticationController extends GetxController {
     clearText();
   }
 
+  @override
+  void dispose() {
+    super.dispose();
+    Get.delete<AuthenticationController>();
+    clearText();
+  }
+
+  @override
+  void onClose() {
+    super.onClose();
+    Get.delete<AuthenticationController>();
+    clearText();
+  }
+
+  var obscureText = true.obs;
+
   final email = TextEditingController();
   final password = TextEditingController();
   final passwordC = TextEditingController();
@@ -29,8 +45,8 @@ class AuthenticationController extends GetxController {
   }
 
   void logout() {
-    AuthenticationRepository.instance.logout();
     clearText();
+    AuthenticationRepository.instance.logout();
   }
 
   void clearText() {

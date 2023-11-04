@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:visualarch_v1/src/common_widgets/dialog/custom_dialog.dart';
+import 'package:visualarch_v1/src/constants/durations.dart';
 import 'package:visualarch_v1/src/features/authentication/screens/landing_page/landing_page.dart';
 import 'package:visualarch_v1/src/features/menus/screens/main_menu/main_menu.dart';
 import 'package:visualarch_v1/src/repository/authentication_repository/exceptions/SignInWithEmailAndPasswordFailure.dart';
@@ -24,8 +25,8 @@ class AuthenticationRepository extends GetxController {
 
   _setInitialScreen(User? user) {
     user == null
-        ? Get.offAll(() => const LandingPage())
-        : Get.offAll(() => const MainMenu());
+        ? Get.offAll(() => const LandingPage(),transition: Transition.fade,duration: defaultTransitionD)
+        : Get.offAll(() => const MainMenu(),transition: Transition.fade,duration: defaultTransitionD);
   }
 
   Future<void> createUserAuth(String email, String password) async {

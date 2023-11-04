@@ -1,15 +1,20 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:layout/layout.dart';
-import 'package:visualarch_v1/src/constants/colors.dart';
 import 'package:visualarch_v1/src/constants/styles.dart';
 
+import '../../features/authentication/controllers/signup_controller.dart';
+
 class ModalImage extends StatelessWidget {
-  const ModalImage({Key? key}) : super(key: key);
+  ModalImage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     Size size = context.layout.size;
+    final controller = Get.put(SignupController());
 
     return Container(
       width: double.infinity,
@@ -20,37 +25,54 @@ class ModalImage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const Text(
-            "Foto de perfil",
+            "Escoge tu foto de perfil",
             style: titleStyle,
           ),
-          const SizedBox(height: 30,),
+          const SizedBox(
+            height: 30,
+          ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               InkWell(
                 child: const Column(
                   children: [
-                    Icon(Icons.image,size: 50,color: Colors.white,),
+                    Icon(
+                      Icons.image,
+                      size: 50,
+                      color: Colors.white,
+                    ),
                     Text(
                       "Galería",
                       style: subtitleStyleS,
                     )
                   ],
                 ),
-                onTap: () {takePhoto(ImageSource.gallery);},
+                onTap: () async {
+                  await controller.pickProfileImage(ImageSource.gallery);
+
+                },
               ),
-              const SizedBox(width: 20,),
+              const SizedBox(
+                width: 20,
+              ),
               InkWell(
                 child: const Column(
                   children: [
-                    Icon(Icons.camera_alt_rounded,size: 50,color: Colors.white,),
+                    Icon(
+                      Icons.camera_alt_rounded,
+                      size: 50,
+                      color: Colors.white,
+                    ),
                     Text(
                       "Cámara",
                       style: subtitleStyleS,
                     )
                   ],
                 ),
-                onTap: () {takePhoto(ImageSource.camera);},
+                onTap: () async {
+                  await controller.pickProfileImage(ImageSource.camera);
+                },
               )
             ],
           )
@@ -58,6 +80,4 @@ class ModalImage extends StatelessWidget {
       ),
     );
   }
-
-  void takePhoto(ImageSource source) {}
 }

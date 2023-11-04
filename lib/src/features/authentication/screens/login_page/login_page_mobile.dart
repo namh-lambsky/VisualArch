@@ -16,11 +16,11 @@ class LoginPageMobile extends StatelessWidget {
       body: SingleChildScrollView(
           child: Container(
               padding: EdgeInsets.symmetric(horizontal: padding * 4),
-              child: SafeArea(
+              child: const SafeArea(
                   child: Column(
                     children: [
-                      const LoginHeader(),
-                      const SizedBox(height: 20,),
+                      LoginHeader(),
+                      SizedBox(height: 20,),
                       LoginForm(),
                     ],
                   ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:layout/layout.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
@@ -9,6 +10,7 @@ import 'package:visualarch_v1/src/features/authentication/controllers/authentica
 import 'package:visualarch_v1/src/features/menus/screens/profile_screen/update_profile/update_profile.dart';
 
 import '../../../../constants/styles.dart';
+import '../../controllers/profile_controller.dart';
 import 'list_widget/profile_list_widget.dart';
 
 class ProfileMenuMobile extends StatelessWidget {
@@ -16,6 +18,7 @@ class ProfileMenuMobile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(ProfileController());
     double padding = context.layout.value(xs: 8);
 
     return Scaffold(
@@ -49,9 +52,7 @@ class ProfileMenuMobile extends StatelessWidget {
                   height: 120,
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(100),
-                    child: const Image(
-                      image: AssetImage(accIcon),
-                    ),
+                    child:  SvgPicture.asset(accIcon)
                   )),
               const SizedBox(
                 height: 10,

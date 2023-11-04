@@ -29,12 +29,12 @@ class ItemCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-        child: Card(
+    return Card(
       semanticContainer: true,
       clipBehavior: Clip.antiAliasWithSaveLayer,
       margin: const EdgeInsets.all(15),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+      shape:
+          RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(30),
         child: Container(
@@ -102,6 +102,6 @@ class ItemCard extends StatelessWidget {
           ),
         ),
       ),
-    ));
+    );
   }
 }
