@@ -6,6 +6,7 @@ import 'package:visualarch_v1/src/features/authentication/screens/login_page/log
 import 'package:wc_form_validators/wc_form_validators.dart';
 
 import '../../../controllers/signup_controller.dart';
+import '../verify_email/verify_email.dart';
 
 class SignUpForm extends StatelessWidget {
   const SignUpForm({Key? key}) : super(key: key);
@@ -14,7 +15,6 @@ class SignUpForm extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.put(SignupController());
     final formKey = GlobalKey<FormState>();
-
 
     return Form(
       key: formKey,
@@ -150,6 +150,7 @@ class SignUpForm extends StatelessWidget {
                         controller.fullname.text,
                         controller.phone.text,
                         controller.password.text);
+                    Get.to(() => const VerifyEmail());
                   }
                 }
               },

@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:visualarch_v1/src/common_widgets/dialog/custom_dialog.dart';
 import 'package:visualarch_v1/src/constants/durations.dart';
 import 'package:visualarch_v1/src/features/authentication/screens/landing_page/landing_page.dart';
+import 'package:visualarch_v1/src/features/authentication/screens/sign_up_page/verify_email/verify_email.dart';
 import 'package:visualarch_v1/src/features/menus/screens/main_menu/main_menu.dart';
 import 'package:visualarch_v1/src/repository/authentication_repository/exceptions/SignInWithEmailAndPasswordFailure.dart';
 
@@ -19,14 +20,31 @@ class AuthenticationRepository extends GetxController {
   void onReady() {
     firebaseUser = Rx<User?>(_auth.currentUser);
     firebaseUser.bindStream(_auth.userChanges());
-
-    ever(firebaseUser, _setInitialScreen);
+    setInitialScreen(_auth.currentUser);
   }
 
-  _setInitialScreen(User? user) {
+  setInitialScreen(User? user) {
     user == null
-        ? Get.offAll(() => const LandingPage(),transition: Transition.fade,duration: defaultTransitionD)
-        : Get.offAll(() => const MainMenu(),transition: Transition.fade,duration: defaultTransitionD);
+        ? Get.offAll(() => const LandingPage(),
+            transition: Transition.fade, duration: defaultTransitionD)
+        : user.emailVerified
+            ? Get.offAll(() => const MainMenu(),
+                transition: Transition.fade, duration: defaultTransitionD)
+            : Get.offAll(() => const VerifyEmail(),
+                transition: Transition.fade, duration: defaultTransitionD);
+  }
+
+  Future sendVerificationEmail(User user) async {
+    try {
+      await user.sendEmailVerification();
+    } on Exception catch (e) {
+      Get.dialog(CustomDialog(
+        title: "Error",
+        iconData: Icons.cancel_outlined,
+        nextCallback: () => Get.back(),
+        message: e.toString(),
+      ));
+    }
   }
 
   Future<void> createUserAuth(String email, String password) async {
@@ -91,8 +109,8 @@ class AuthenticationRepository extends GetxController {
 
   Future<void> sendEmailVerification() async {
     try {
+      print(_auth.currentUser?.email);
       await _auth.currentUser?.sendEmailVerification();
-
     } on FirebaseAuthException catch (ex) {
       Get.dialog(
         CustomDialog(
@@ -124,7 +142,8 @@ class AuthenticationRepository extends GetxController {
             title: "Exito!",
             iconData: Icons.check_circle_outline,
             nextCallback: () => Get.back(),
-            message: "Revisa tu correo! en contados instantes te llegará un link para recuperar tu cuenta",
+            message:
+                "Revisa tu correo! en contados instantes te llegará un link para recuperar tu cuenta",
             iconColor: Colors.lightGreen),
       );
     } on FirebaseAuthException catch (ex) {

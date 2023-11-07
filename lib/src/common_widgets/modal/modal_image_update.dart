@@ -5,17 +5,18 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:layout/layout.dart';
 import 'package:visualarch_v1/src/constants/styles.dart';
+import 'package:visualarch_v1/src/features/menus/controllers/profile_controller.dart';
 
 import '../../features/authentication/controllers/signup_controller.dart';
 
-class ModalImage extends StatelessWidget {
+class ModalImageUpdate extends StatelessWidget {
 
-   ModalImage({Key? key}) : super(key: key);
+  ModalImageUpdate({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     Size size = context.layout.size;
-    final controller = Get.put(SignupController());
+    final controller = Get.put(ProfileController());
 
     return Container(
       width: double.infinity,

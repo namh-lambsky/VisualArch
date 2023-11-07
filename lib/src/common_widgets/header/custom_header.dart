@@ -6,14 +6,15 @@ class CustomHeader extends StatelessWidget {
   final Widget image;
   final String title;
   final String subtitle;
-  final TextAlign? textAlign;
+  bool isCentered;
 
-  const CustomHeader(
-      {Key? key,
-      required this.image,
-      required this.title,
-      required this.subtitle,
-      this.textAlign});
+  CustomHeader({
+    Key? key,
+    required this.image,
+    required this.title,
+    required this.subtitle,
+    this.isCentered = false,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -29,15 +30,36 @@ class CustomHeader extends StatelessWidget {
         const SizedBox(
           height: 40,
         ),
-        Text(
-          title,
-          style: titleStyle,
-          textAlign: TextAlign.center,
-        ),
-        Text(
-          subtitle,
-          style: subtitleStyle,
-        ),
+        isCentered
+            ? Center(
+                child: Column(
+                  children: [
+                    Text(
+                      title,
+                      style: titleStyle,
+                    ),
+                    Text(
+                      subtitle,
+                      style: subtitleStyle,
+                    ),
+                  ],
+                ),
+              )
+            : Align(
+                alignment: AlignmentDirectional.centerStart,
+                child: Column(
+                  children: [
+                    Text(
+                      title,
+                      style: titleStyle,
+                    ),
+                    Text(
+                      subtitle,
+                      style: subtitleStyle,
+                    ),
+                  ],
+                ),
+              ),
       ],
     );
   }

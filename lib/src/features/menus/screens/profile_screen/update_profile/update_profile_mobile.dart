@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:layout/layout.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
+import 'package:visualarch_v1/src/common_widgets/user_image/user_image.dart';
 import 'package:visualarch_v1/src/constants/colors.dart';
 import 'package:visualarch_v1/src/features/authentication/models/user_model.dart';
 
@@ -58,30 +59,18 @@ class UpdateProfileMobile extends StatelessWidget {
                   children: [
                     Stack(
                       children: [
-                        SizedBox(
-                            width: 120,
-                            height: 120,
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(100),
-                              child: const Image(
-                                image: AssetImage(accIcon),
-                              ),
-                            )),
-                        Positioned(
-                          bottom: 0,
-                          right: 0,
-                          child: Container(
-                            width: 35,
-                            height: 35,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(100),
-                                color: Colors.white),
-                            child: const Icon(
-                              LineAwesomeIcons.camera,
-                              color: Colors.black,
-                              size: 30,
+                        Container(
+                          width: 155,
+                          height: 155,
+                          decoration: BoxDecoration(
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(100.0)),
+                            border: Border.all(
+                              color: Colors.green.withOpacity(0.7),
+                              width: 2.0,
                             ),
                           ),
+                          child: UserImage(isCustomizable: true),
                         ),
                       ],
                     ),

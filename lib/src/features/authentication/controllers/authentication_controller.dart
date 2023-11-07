@@ -39,9 +39,10 @@ class AuthenticationController extends GetxController {
   }
 
   void login(String email, String password) {
+    final auth = AuthenticationRepository.instance;
     clearText();
-    AuthenticationRepository.instance
-        .loginUserWithEmailAndPassword(email, password);
+    auth.loginUserWithEmailAndPassword(email, password);
+    auth.setInitialScreen(auth.firebaseUser.value);
   }
 
   void logout() {

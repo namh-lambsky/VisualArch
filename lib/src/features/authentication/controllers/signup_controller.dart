@@ -43,15 +43,15 @@ class SignupController extends GetxController {
   final fullname = TextEditingController();
   final phone = TextEditingController();
 
-  final imageHelper = Get.put(ImageHelper());
+  final _imageHelper = Get.put(ImageHelper());
   final userRepo = Get.put(UserRepository());
   final authRepo = Get.put(AuthenticationRepository());
 
   pickProfileImage(ImageSource source) async {
-    final files = await imageHelper.pickImage(source: source);
+    final files = await _imageHelper.pickImage(source: source);
     if (files.isNotEmpty) {
       Get.back();
-      final croppedFile = await imageHelper.crop(
+      final croppedFile = await _imageHelper.crop(
           file: files.first, cropStyle: CropStyle.circle);
       if (croppedFile != null) {
         imageFile = XFile(croppedFile.path);
@@ -71,8 +71,6 @@ class SignupController extends GetxController {
             milliseconds: 1700,
           ),
         );
-
-        update();
       } else {
         Get.snackbar(
           "Error",
@@ -106,6 +104,7 @@ class SignupController extends GetxController {
       phone: phone,
     );
     await userRepo.createUserDB(user, imageFile!);
+    authRepo.setInitialScreen(authRepo.firebaseUser.value);
     clearFields();
   }
 

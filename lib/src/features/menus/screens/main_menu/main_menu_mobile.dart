@@ -48,24 +48,26 @@ class MainMenuMobile extends StatelessWidget {
         backgroundColor: Colors.transparent,
         actions: [
           GestureDetector(
-              onTap: () {
-                Get.to(() => const ProfileMenu(),transition: Transition.rightToLeftWithFade);
-              },
-              child: Container(
-                width: 55,
-                height: 55,
-                decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.all( Radius.circular(50.0)),
-                  border: Border.all(
-                    color: Colors.green.withOpacity(0.7),
-                    width: 2.0,
-                  ),
+            onTap: () {
+              Get.to(() => const ProfileMenu(),
+                  transition: Transition.rightToLeftWithFade);
+            },
+            child: Container(
+              width: 55,
+              height: 55,
+              decoration: BoxDecoration(
+                borderRadius: const BorderRadius.all(Radius.circular(50.0)),
+                border: Border.all(
+                  color: Colors.green.withOpacity(0.7),
+                  width: 2.0,
                 ),
-                child: UserImage(
-                  width: 50,
-                  height: 50,
-                ),
-              )),
+              ),
+              child: UserImage(
+                width: 50,
+                height: 50,
+              ),
+            ),
+          ),
         ],
       ),
       body: Column(
