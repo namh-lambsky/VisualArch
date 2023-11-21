@@ -33,21 +33,24 @@ class AuthenticationController extends GetxController {
   final fullname = TextEditingController();
   final phone = TextEditingController();
 
+  final auth = AuthenticationRepository.instance;
+
   void resetPasswordByEmail(String email) {
     clearText();
-    AuthenticationRepository.instance.resetPassword(email);
+    auth.resetPassword(email);
   }
 
-  void login(String email, String password) {
-    final auth = AuthenticationRepository.instance;
+  Future<void> login(String email, String password) async {
+
     clearText();
-    auth.loginUserWithEmailAndPassword(email, password);
+    await auth.loginUserWithEmailAndPassword(email, password);
     auth.setInitialScreen(auth.firebaseUser.value);
   }
 
   void logout() {
     clearText();
-    AuthenticationRepository.instance.logout();
+    auth.logout();
+    auth.setInitialScreen(null);
   }
 
   void clearText() {

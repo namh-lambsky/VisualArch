@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:layout/layout.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
+import 'package:visualarch_v1/src/common_widgets/appbar/custom_appbar.dart';
 import 'package:visualarch_v1/src/common_widgets/user_image/user_image.dart';
 import 'package:visualarch_v1/src/constants/colors.dart';
 import 'package:visualarch_v1/src/features/authentication/models/user_model.dart';
@@ -22,25 +23,7 @@ class UpdateProfileMobile extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: backgroundColor,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        leading: IconButton(
-            onPressed: () {
-              Get.back();
-            },
-            icon: const Icon(
-              LineAwesomeIcons.angle_left,
-              color: Colors.white,
-            )),
-        title: Container(
-          padding: const EdgeInsets.all(8),
-          child: const Text(
-            "Editar Perfil",
-            style: titleStyle,
-          ),
-        ),
-        centerTitle: true,
-      ),
+      appBar: const CustomAppbar(hasBackButton: true),
       body: SingleChildScrollView(
           child: Container(
         padding: EdgeInsets.all(padding * 4),
@@ -105,7 +88,9 @@ class UpdateProfileMobile extends StatelessWidget {
                                 final userData = UserModel(
                                     name: fullname.text,
                                     email: email.text,
-                                    phone: phone.text);
+                                    phone: phone.text,
+                                    profilePhotoURL: controller.imageUrl.value,
+                                );
 
                                 await controller.updateRecord(userData);
                               },

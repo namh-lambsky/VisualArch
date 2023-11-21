@@ -108,8 +108,6 @@ class SignupController extends GetxController {
     clearFields();
   }
 
-  void setProfileImagePath(String Path) {}
-
   void clearFields() {
     email.clear();
     password.clear();

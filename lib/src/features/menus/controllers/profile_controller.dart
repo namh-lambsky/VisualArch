@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -21,11 +22,16 @@ class ProfileController extends GetxController {
   XFile? imageFile;
   var imageUrl = "".obs;
   var hasChanged = false.obs;
-  var provider;
+  late ImageProvider provider;
 
   initialCall() async {
     imageUrl.value = await getUserPhoto();
     provider=NetworkImage(imageUrl.value);
+  }
+
+  loadResources()async{
+    await getUserPhoto();
+    await getUserData();
   }
 
   swapProvider(){
@@ -35,24 +41,25 @@ class ProfileController extends GetxController {
           imageUrl.value,
         ),
       );
-      print("ola");
     } else {
       provider = NetworkImage(imageUrl.value);
-      print("xd");
     }
   }
 
   pickProfileImage(ImageSource source) async {
     final files = await _imageHelper.pickImage(source: source);
     if (files.isNotEmpty) {
-      
-      Get.back();
+
       final croppedFile = await _imageHelper.crop(
           file: files.first, cropStyle: CropStyle.circle);
+
       if (croppedFile != null) {
+        hasChanged.value=true;
+        log(croppedFile.path);
         imageFile = XFile(croppedFile.path);
         imageUrl.value = imageFile!.path;
-
+        log(imageUrl.value);
+        swapProvider();
         Get.snackbar(
           "Foto de perfil",
           "Se subio la foto de perfil de forma exitosa",
@@ -67,6 +74,7 @@ class ProfileController extends GetxController {
             milliseconds: 1700,
           ),
         );
+        update();
       } else {
         Get.snackbar(
           "Error",

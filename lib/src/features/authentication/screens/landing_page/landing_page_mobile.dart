@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:layout/layout.dart';
-import 'package:visualarch_v1/src/constants/durations.dart';
+import 'package:visualarch_v1/src/constants/other_constants.dart';
 import 'package:visualarch_v1/src/features/authentication/screens/sign_up_page/sign_up_page.dart';
 
 
@@ -41,7 +41,7 @@ class LandingPageMobile extends StatelessWidget {
                   child: const Text(
                     "Plataforma líder en tecnología inmobiliaria que ofrece una amplia colección de paquetes como herramienta de ayuda a las inmobiliarias a visualizar sus propiedades de manera virtual",
                     style: paragraphStyle,
-                    textAlign: TextAlign.justify,
+                    textAlign: TextAlign.left,
                   ),
                 ),
                 const SizedBox(
