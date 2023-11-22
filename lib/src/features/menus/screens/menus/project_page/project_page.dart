@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:layout/layout.dart';
-import 'package:visualarch_v1/src/features/menus/screens/main_menu/project_page/project_page_desktop.dart';
-import 'package:visualarch_v1/src/features/menus/screens/main_menu/project_page/project_page_mobile.dart';
+import 'project_page_desktop.dart';
+import 'project_page_mobile.dart';
 
 class ProjectPage extends StatelessWidget {
   final String projectName;

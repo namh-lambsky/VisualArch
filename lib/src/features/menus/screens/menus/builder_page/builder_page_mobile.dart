@@ -5,8 +5,8 @@ import 'package:visualarch_v1/src/common_widgets/appbar/custom_appbar.dart';
 import 'package:visualarch_v1/src/constants/colors.dart';
 import 'package:visualarch_v1/src/constants/styles.dart';
 import 'package:visualarch_v1/src/features/menus/controllers/project_controller.dart';
-import 'package:visualarch_v1/src/features/menus/models/building_company_model.dart';
-import 'package:visualarch_v1/src/features/menus/screens/main_menu/item_card/building_project_card.dart';
+
+import '../item_card/building_project_card.dart';
 
 class BuilderPageMobile extends StatelessWidget {
   final String builderName;

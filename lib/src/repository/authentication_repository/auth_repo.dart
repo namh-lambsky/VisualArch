@@ -5,7 +5,7 @@ import 'package:visualarch_v1/src/common_widgets/dialog/custom_dialog.dart';
 import 'package:visualarch_v1/src/constants/other_constants.dart';
 import 'package:visualarch_v1/src/features/authentication/screens/landing_page/landing_page.dart';
 import 'package:visualarch_v1/src/features/authentication/screens/sign_up_page/verify_email/verify_email.dart';
-import 'package:visualarch_v1/src/features/menus/screens/main_menu/main_menu.dart';
+import 'package:visualarch_v1/src/features/menus/screens/menus/main_menu.dart';
 import 'package:visualarch_v1/src/repository/authentication_repository/exceptions/SignInWithEmailAndPasswordFailure.dart';
 
 import 'exceptions/SignUpWithEmailAndPasswordFailure.dart';

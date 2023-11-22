@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 import 'package:layout/layout.dart';
 import 'package:visualarch_v1/src/common_widgets/image_carousel/image_carousel.dart';
-import 'package:visualarch_v1/src/common_widgets/image_widget/image_widget.dart';
 import 'package:visualarch_v1/src/constants/other_constants.dart';
 import 'package:visualarch_v1/src/constants/styles.dart';
-import 'package:visualarch_v1/src/features/menus/screens/main_menu/main_menu.dart';
-import 'package:visualarch_v1/src/features/menus/screens/main_menu/project_page/project_page.dart';
+
+import '../project_page/project_page.dart';
+
 
 class BuildingProjectCard extends StatelessWidget {
   final String projectName;

@@ -17,10 +17,10 @@ dependencies:
   cupertino_icons: ^1.0.6
 
   #FIREBASE
-  firebase_core: ^2.22.0
-  firebase_auth: ^4.14.0
-  cloud_firestore: ^4.13.1
-  firebase_storage: ^11.5.1
+  firebase_core: ^2.23.0
+  firebase_auth: ^4.14.1
+  cloud_firestore: ^4.13.2
+  firebase_storage: ^11.5.2
 
   #CORE
   get: ^4.6.6
@@ -34,14 +34,17 @@ dependencies:
   flutter_svg: ^2.0.9
   flutter_otp_text_field: ^1.1.1
   wc_form_validators: ^1.0.1
-  flutter_native_splash: ^2.3.5
+  flutter_native_splash: ^2.3.6
   image_cropper: ^5.0.0
   image_picker: ^1.0.4
   path_provider: ^2.1.1
   flutter_image_compress: ^2.1.0
   carousel_slider: ^4.2.1
   intl: ^0.18.1
-  geolocator: ^9.0.2
+  geolocator: ^10.1.0
+  permission_handler: ^11.1.0
+  geocoding: ^2.1.1
+  flutter_polyline_points: ^2.0.0
 
 dev_dependencies:
   flutter_test:

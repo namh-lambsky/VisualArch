@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:layout/layout.dart';
-import 'package:visualarch_v1/src/features/menus/models/building_company_model.dart';
-import 'package:visualarch_v1/src/features/menus/screens/main_menu/builder_page/builder_page_desktop.dart';
-import 'package:visualarch_v1/src/features/menus/screens/main_menu/builder_page/builder_page_mobile.dart';
+import 'builder_page_desktop.dart';
+import 'builder_page_mobile.dart';
 
 class BuilderPage extends StatelessWidget {
   final String builderName;

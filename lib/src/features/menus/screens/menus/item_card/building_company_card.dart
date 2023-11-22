@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:layout/layout.dart';
 import 'package:visualarch_v1/src/constants/styles.dart';
-import 'package:visualarch_v1/src/features/menus/screens/main_menu/builder_page/builder_page.dart';
+import '../builder_page/builder_page.dart';
 
 class BuildingCompanyCard extends StatelessWidget {
   final String builderName;

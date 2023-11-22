@@ -30,6 +30,8 @@ const TextStyle titleStyle =
 
 const TextStyle titleStyleLight=TextStyle(fontSize: 20,color: Colors.white,fontFamily: 'ExtraLight');
 
+const TextStyle titleBigStyleLight=TextStyle(fontSize: 32,color: Colors.white,fontFamily: 'ExtraLight');
+
 const TextStyle subtitleStyle =
     TextStyle(fontSize: 20, color: Colors.white, fontFamily: 'Regular');
 
@@ -104,3 +106,5 @@ ButtonStyle warningButton = ElevatedButton.styleFrom(
     minimumSize: const Size(160, 55));
 
 ButtonStyle transparentButton = ElevatedButton.styleFrom(elevation: 0,backgroundColor: Colors.transparent,minimumSize: const Size(60, 60));
+
+ButtonStyle textBt= TextButton.styleFrom(alignment: AlignmentDirectional.topStart,elevation: 0,padding: EdgeInsets.zero);

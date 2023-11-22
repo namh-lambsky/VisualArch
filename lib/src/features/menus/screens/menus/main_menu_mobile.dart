@@ -5,8 +5,10 @@ import 'package:visualarch_v1/src/constants/colors.dart';
 import 'package:visualarch_v1/src/constants/styles.dart';
 import 'package:get/get.dart';
 import 'package:visualarch_v1/src/features/menus/models/building_company_model.dart';
-import 'package:visualarch_v1/src/features/menus/screens/main_menu/item_card/building_company_card.dart';
+
 import 'package:visualarch_v1/src/features/menus/controllers/menu_controller.dart';
+
+import 'item_card/building_company_card.dart';
 
 class MainMenuMobile extends StatelessWidget {
   const MainMenuMobile({Key? key}) : super(key: key);
