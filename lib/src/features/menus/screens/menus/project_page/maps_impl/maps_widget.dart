@@ -21,7 +21,7 @@ class MapsWidget extends StatelessWidget {
         Completer<GoogleMapController>();
 
     final controller = Get.put(LocationController());
-    
+
     return Obx(() {
       if (controller.isGPSEnabled.value &&
           controller.isGPSPermsionGranted.value) {
@@ -34,9 +34,13 @@ class MapsWidget extends StatelessWidget {
 
   Widget showMap(LocationController controller,
       Completer<GoogleMapController> googleMapController) {
-    controller.getLocationGivenAddress(projectAddress).then((_) {
-      controller.getPolylinesPoints().then((coordinates) {
-        controller.generatePolylinesFromPoints(coordinates);
+
+    controller.userLocation().then((value) {
+      controller.origin=value;
+      controller.getLocationGivenAddress(projectAddress).then((_) {
+        controller.getPolylinesPoints().then((coordinates) {
+          controller.generatePolylinesFromPoints(coordinates);
+        });
       });
     });
 

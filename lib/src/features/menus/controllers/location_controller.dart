@@ -46,10 +46,7 @@ class LocationController extends GetxController {
 
     if (isGPSEnabled.value && isGPSPermsionGranted.value) {
       setCameraToUserCurrentLocation();
-      _userLocation().then((value) {
-        origin = value;
-      });
-    }
+      }
   }
 
   Future<bool> _isPermissionGranted() async {
@@ -98,7 +95,7 @@ class LocationController extends GetxController {
         desiredAccuracy: LocationAccuracy.high);
   }
 
-  Future<LatLng> _userLocation() async {
+  Future<LatLng> userLocation() async {
     final snapshot = await locateUser();
     return LatLng(snapshot.latitude, snapshot.longitude);
   }
