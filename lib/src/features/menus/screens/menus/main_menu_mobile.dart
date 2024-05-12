@@ -69,8 +69,8 @@ class MainMenuMobile extends StatelessWidget {
                             });
                       } else if (snapshot.hasError) {
                         return Center(
-                          child: Text(
-                            snapshot.error.toString(),
+                          child: Text("Error! ${snapshot.error.toString()}"
+                            ,
                             style: titleStyle,
                           ),
                         );

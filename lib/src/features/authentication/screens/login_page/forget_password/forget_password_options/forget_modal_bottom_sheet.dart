@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:visualarch_v1/src/common_widgets/missing/on_development.dart';
 import 'package:visualarch_v1/src/features/authentication/screens/login_page/forget_password/forget_password_mail/forget_password_mail_screen.dart';
 
 import '../../../../../../constants/colors.dart';
@@ -51,7 +52,7 @@ class ForgetModalBottomSheet {
                       height: 20,
                     ),
                     ForgetPasswordOptionsButton(
-                      onTap: () {},
+                      onTap: () {Get.to(()=>const OnDevelopment());},
                       title: "Mensaje de texto",
                       subtitle:
                           "Enviar mensaje recuperación \nde cuenta vía Mensaje de texto \n(NO IMPLEMENTADO AÚN)",

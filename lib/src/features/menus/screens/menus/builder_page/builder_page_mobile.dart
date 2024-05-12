@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:layout/layout.dart';
 import 'package:visualarch_v1/src/common_widgets/appbar/custom_appbar.dart';
+import 'package:visualarch_v1/src/common_widgets/missing/no_data.dart';
 import 'package:visualarch_v1/src/constants/colors.dart';
 import 'package:visualarch_v1/src/constants/styles.dart';
 import 'package:visualarch_v1/src/features/menus/controllers/project_controller.dart';
@@ -50,25 +51,30 @@ class BuilderPageMobile extends StatelessWidget {
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.done) {
                       if (snapshot.hasData) {
-                        return ListView.builder(
-                          scrollDirection: Axis.vertical,
-                          itemCount: snapshot.data!.length,
-                          itemBuilder: (c, index) {
-                            return BuildingProjectCard(
-                              projectName: snapshot.data![index].name,
-                              images: snapshot.data![index].images,
-                              projectLogoPath:
-                                  snapshot.data![index].projectLogoURL,
-                              city: snapshot.data![index].city,
-                              area: snapshot.data![index].area,
-                              price: (snapshot.data![index].price),
-                            );
-                          },
-                        );
+
+                        return snapshot.data!.isNotEmpty
+                            ? ListView.builder(
+                                scrollDirection: Axis.vertical,
+                                itemCount: snapshot.data!.length,
+                                itemBuilder: (c, index) {
+                                  return BuildingProjectCard(
+                                    projectName: snapshot.data![index].name,
+                                    images: snapshot.data![index].images,
+                                    projectLogoPath:
+                                        snapshot.data![index].projectLogoURL,
+                                    city: snapshot.data![index].city,
+                                    area: snapshot.data![index].area,
+                                    price: snapshot.data![index].price,
+                                    towers: snapshot.data![index].towers,
+                                    availableUnits: snapshot.data![index].availableUnits,
+                                  );
+                                },
+                              )
+                            : const NoData();
                       } else if (snapshot.hasError) {
                         return Center(
                           child: Text(
-                            snapshot.error.toString(),
+                            "Error! ${snapshot.error.toString()}",
                             style: titleStyle,
                           ),
                         );

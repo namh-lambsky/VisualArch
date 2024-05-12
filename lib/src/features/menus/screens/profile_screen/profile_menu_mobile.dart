@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:layout/layout.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:visualarch_v1/src/common_widgets/appbar/custom_appbar.dart';
+import 'package:visualarch_v1/src/common_widgets/missing/on_development.dart';
 import 'package:visualarch_v1/src/common_widgets/user_image/user_image.dart';
 import 'package:visualarch_v1/src/constants/colors.dart';
 import 'package:visualarch_v1/src/constants/other_constants.dart';
@@ -113,7 +114,7 @@ class ProfileMenuMobile extends StatelessWidget {
                 ),
                 ProfileListWidget(
                   title: "Métodos de pago",
-                  onPressed: () {},
+                  onPressed: () {Get.to(()=>const OnDevelopment());},
                   icon: LineAwesomeIcons.wallet,
                   endIcon: true,
                 ),

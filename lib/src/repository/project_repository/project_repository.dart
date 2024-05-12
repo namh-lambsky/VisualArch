@@ -10,14 +10,15 @@ class ProjectRepository extends GetxController{
   final _storage = FirebaseStorage.instance;
 
   Future<BuildingProjectModel>getProjectDetails(String name) async {
-    final snapshot=await _db.collection("building_projects").where("name",isEqualTo: name).get();
+    final snapshot=await _db.collection("building_projects").where("projectName",isEqualTo: name).get();
     final projectData=snapshot.docs.map((e) => BuildingProjectModel.fromSnapshot(e)).single;
     return projectData;
   }
 
   Future<List<BuildingProjectModel>> getAllProjectsByCompanyName(String name) async {
-    final snapshot=await _db.collection("building_projects").where("buildingCompany",isEqualTo: name).get();
+    final snapshot=await _db.collection("building_projects").where("companyName",isEqualTo: name).get();
     final projectsData=snapshot.docs.map((e) => BuildingProjectModel.fromSnapshot(e)).toList();
+
     return projectsData;
   }
 

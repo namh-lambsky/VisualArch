@@ -90,7 +90,6 @@ class LoginForm extends StatelessWidget {
               btText: "Iniciar Sesión",
               onPressed: () {
                 if (formKey.currentState!.validate()) {
-                  Map<String, dynamic> values;
                   AuthenticationController.instance
                       .login(controller.email.text, controller.password.text);
                 }

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:visualarch_v1/src/constants/other_constants.dart';
+import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 
 class LocationController extends GetxController {
   static LocationController get instance => Get.put(LocationController());
@@ -117,8 +117,6 @@ class LocationController extends GetxController {
   Future<List<LatLng>> getPolylinesPoints() async {
     List<LatLng> polylineCoordinates = [];
     PolylinePoints polylinePoints = PolylinePoints();
-    print (origin);
-    print(destination);
     PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(
         googleAPIKey,
         PointLatLng(origin.latitude, origin.longitude),
@@ -133,17 +131,16 @@ class LocationController extends GetxController {
     } else {
       print(result.errorMessage);
     }
-    print(polylineCoordinates);
     return polylineCoordinates;
   }
 
-  void generatePolylinesFromPoints(List<LatLng> polylineCoordinates) async{
+  void generatePolylineFromPoints(List<LatLng> polylineCoordinates) async{
     PolylineId id = const PolylineId("route");
     Polyline polyline = Polyline(
         polylineId: id,
         color: Colors.green,
         points: polylineCoordinates,
-        width: 8);
+        width: 6);
     polylines.addAll({id:polyline});
   }
 }

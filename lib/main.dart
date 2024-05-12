@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:visualarch_v1/src/features/authentication/screens/landing_page/landing_page.dart';
 import 'package:visualarch_v1/dependency_injection.dart' as di;
@@ -22,6 +23,8 @@ void main() async {
       .then((value) async {
     await di.init();
   });
+  SystemChrome.setPreferredOrientations
+    ([DeviceOrientation.portraitUp]);
   runApp(const MyApp());
 }
 

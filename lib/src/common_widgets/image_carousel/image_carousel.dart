@@ -22,7 +22,6 @@ class ImageCarousel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     CarouselController carouselController = CarouselController();
-
     return Stack(
       children: [
         CarouselSlider.builder(

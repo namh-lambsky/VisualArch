@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:visualarch_v1/src/features/menus/models/building_company_model.dart';
 
-class CompanyRepository extends GetxController{
+class CompanyRepository extends GetxController {
   static CompanyRepository get instance => Get.find();
 
   final _db = FirebaseFirestore.instance;
@@ -25,17 +25,20 @@ class CompanyRepository extends GetxController{
     return downloadUrl;
   }
 
-  Future<BuildingCompanyModel>getCompanyDetails(String name) async {
-    final snapshot=await _db.collection("building_companies").where("name",isEqualTo: name).get();
-    final companyData=snapshot.docs.map((e) => BuildingCompanyModel.fromSnapshot(e)).single;
+  Future<BuildingCompanyModel> getCompanyDetails(String name) async {
+    final snapshot = await _db
+        .collection("building_companies")
+        .where("name", isEqualTo: name)
+        .get();
+    final companyData =
+        snapshot.docs.map((e) => BuildingCompanyModel.fromSnapshot(e)).single;
     return companyData;
   }
 
   Future<List<BuildingCompanyModel>> getAllCompanies() async {
-    final snapshot=await _db.collection("building_companies").get();
-    final companiesData=snapshot.docs.map((e) => BuildingCompanyModel.fromSnapshot(e)).toList();
+    final snapshot = await _db.collection("building_companies").get();
+    final companiesData =
+        snapshot.docs.map((e) => BuildingCompanyModel.fromSnapshot(e)).toList();
     return companiesData;
   }
-
-
 }

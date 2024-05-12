@@ -39,7 +39,7 @@ class MapsWidget extends StatelessWidget {
       controller.origin=value;
       controller.getLocationGivenAddress(projectAddress).then((_) {
         controller.getPolylinesPoints().then((coordinates) {
-          controller.generatePolylinesFromPoints(coordinates);
+          controller.generatePolylineFromPoints(coordinates);
         });
       });
     });

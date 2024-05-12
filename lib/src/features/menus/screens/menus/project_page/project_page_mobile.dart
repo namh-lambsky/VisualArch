@@ -7,12 +7,11 @@ import 'package:visualarch_v1/src/common_widgets/image_carousel/image_carousel.d
 import 'package:visualarch_v1/src/common_widgets/separator/custom_separator.dart';
 import 'package:visualarch_v1/src/constants/colors.dart';
 import 'package:visualarch_v1/src/constants/other_constants.dart';
+import 'package:visualarch_v1/src/constants/styles.dart';
 import 'package:visualarch_v1/src/features/menus/controllers/project_controller.dart';
 import 'package:visualarch_v1/src/features/menus/models/building_projects_model.dart';
-import 'package:visualarch_v1/src/features/menus/screens/menus/project_page/maps_impl/maps_widget.dart';
 import 'package:visualarch_v1/src/features/menus/screens/menus/project_page/maps_page/maps_page.dart';
-
-import '../../../../../constants/styles.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ProjectPageMobile extends StatelessWidget {
   final String projectName;
@@ -84,11 +83,13 @@ class ProjectPageMobile extends StatelessWidget {
                                   color: Colors.green,
                                   size: 50,
                                 ),
-                                Align(
-                                  alignment: AlignmentDirectional.topStart,
-                                  child: Text(
-                                    "${project.address}, ${project.city}",
-                                    style: titleStyleLight,
+                                Expanded(
+                                  child: Align(
+                                    alignment: AlignmentDirectional.topStart,
+                                    child: Text(
+                                      "${project.address}, ${project.city}",
+                                      style: titleStyleLight,
+                                    ),
                                   ),
                                 ),
                               ],
@@ -127,6 +128,30 @@ class ProjectPageMobile extends StatelessWidget {
                             ImageCarousel(images: project.images),
                             const SizedBox(
                               height: 15,
+                            ),
+                            CustomElevatedButton(
+                                btText: "Empezar Recorrido",
+                                onPressed: () async {
+                                  await launchUrl(Uri.parse(project.tourURL),
+                                      mode: LaunchMode.inAppBrowserView);
+                                },
+                                btStyle: primaryButton),
+                            const SizedBox(
+                              height: 15,
+                            ),
+                            const Text(
+                              "Quieres saber más acerca de este Proyecto de vivienda?",
+                              style: paragraphStyle,
+                            ),
+                            const SizedBox(
+                              height: 15,
+                            ),
+                            TextButton(
+                              onPressed: () {launchUrl(Uri.parse(project.contactURL));},
+                              child: const Text(
+                                "Haz clic aquí para contactarte con un asesor del proyecto.",
+                                style: subtitleStyleS,
+                              ),
                             ),
                           ],
                         ),
@@ -198,7 +223,7 @@ class ProjectPageMobile extends StatelessWidget {
                     style: subtitleStyleSB,
                   ),
                   Text(
-                    project.towers != 0 ? "$project.towers" : "-",
+                    project.towers != 0 ? "${project.towers}" : "-",
                     style: subtitleStyleSB,
                   ),
                 ],
@@ -218,7 +243,7 @@ class ProjectPageMobile extends StatelessWidget {
                   ),
                   Text(
                     project.availableUnits != 0
-                        ? "$project.availableUnits"
+                        ? "${project.availableUnits}"
                         : "-",
                     style: subtitleStyleSB,
                   ),

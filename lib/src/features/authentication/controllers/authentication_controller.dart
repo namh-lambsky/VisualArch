@@ -41,7 +41,6 @@ class AuthenticationController extends GetxController {
   }
 
   Future<void> login(String email, String password) async {
-
     clearText();
     await auth.loginUserWithEmailAndPassword(email, password);
     auth.setInitialScreen(auth.firebaseUser.value);

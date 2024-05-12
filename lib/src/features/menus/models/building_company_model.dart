@@ -16,8 +16,8 @@ class BuildingCompanyModel {
   toJson() {
     return {
       "id": id,
-      "name": name,
-      "companyPhotoURL": companyPhotoURL,
+      "companyName": name,
+      "imageURL": companyPhotoURL,
       "buildingProjects": buildingProjects,
     };
   }
@@ -27,8 +27,8 @@ class BuildingCompanyModel {
     final company = document.data()!;
     return BuildingCompanyModel(
       id: document.id,
-      name: company['name'],
-      companyPhotoURL: company['companyPhotoURL'],
+      name: company['companyName'],
+      companyPhotoURL: company['imageURL'],
       buildingProjects: company['buildingProjects'],
     );
   }

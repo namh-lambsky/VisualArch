@@ -20,16 +20,15 @@ class MainMenuController extends GetxController {
 
   var userName = "".obs;
 
-
   loadResources() async {
-   await updateName();
-   await getProfilePhoto();
-   await getAllCompanies();
+    await getAllCompanies();
+    await updateName();
+    await getProfilePhoto();
   }
 
   updateName() async {
     UserModel user = await profileController.getUserData();
-    final name=user.name.split(" ");
+    final name = user.name.split(" ");
     userName.value = name[0];
   }
 
@@ -38,6 +37,7 @@ class MainMenuController extends GetxController {
   }
 
   Future<List<BuildingCompanyModel>> getAllCompanies() async {
-    return await companyController.getAllCompanies();
+    var companies=await companyController.getAllCompanies();
+    return companies;
   }
 }

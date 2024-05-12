@@ -14,6 +14,8 @@ class BuildingProjectModel {
   final int availableUnits;
   final String address;
 
+  final String contactURL;
+
   BuildingProjectModel({
     this.id,
     required this.name,
@@ -26,23 +28,25 @@ class BuildingProjectModel {
     this.tourURL = "",
     this.towers = 0,
     this.availableUnits = 0,
+    this.contactURL = "",
     required this.address,
   });
 
   toJson() {
     return {
       "id": id,
-      "name": name,
+      "projectName": name,
       "city": city,
       "area": area,
       "price": price,
-      "buildingCompany": buildingCompany,
-      "images": images,
+      "companyName": buildingCompany,
+      "projectImagesRoute": images,
       "tourURL": tourURL,
-      "projectLogoURL": projectLogoURL,
+      "logoRoute": projectLogoURL,
       "towers": towers,
       "availableUnits": availableUnits,
-      "address": address
+      "address": address,
+      "contactURL": contactURL
     };
   }
 
@@ -51,17 +55,18 @@ class BuildingProjectModel {
     final project = document.data()!;
     return BuildingProjectModel(
       id: document.id,
-      name: project['name'],
+      name: project['projectName'],
       city: project['city'],
-      area: int.parse(project['area']),
-      price: double.parse(project['price']),
-      buildingCompany: project['buildingCompany'],
-      images: List<String>.from(project['images']),
-      tourURL: project['tourURL'],
-      projectLogoURL: project['projectLogoURL'],
+      area: int.parse(project['area'].toString()),
+      price: double.parse(project['price'].toString()),
+      buildingCompany: project['companyName'],
+      images: List<String>.from(project['projectImagesRoute']),
+      tourURL: project['tourURL'] ?? "",
+      projectLogoURL: project['logoRoute'],
       towers: project['towers'] ?? 0,
       availableUnits: project['availableUnits'] ?? 0,
       address: project['address'] ?? "",
+      contactURL: project['contactURL'] ?? "",
     );
   }
 }
